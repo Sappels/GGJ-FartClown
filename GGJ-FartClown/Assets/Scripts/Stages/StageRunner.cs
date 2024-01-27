@@ -34,6 +34,7 @@ public class StageRunner : MonoBehaviour
             Debug.Log("Pizza all slices eaten!");
             PlaceNewPizza();
             GameStateManager.Instance.pizzasEaten++;
+            GameStateManager.Instance.FillUpFarts();
         }
     }
 

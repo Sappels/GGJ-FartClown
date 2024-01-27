@@ -2,6 +2,7 @@ using Palmmedia.ReportGenerator.Core.CodeAnalysis;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class GameStateManager : MonoBehaviour
     public int timesFarted = 0;
     public int pizzasEaten = 0;
     public float score = 0;
-    public float fartMeter = 0;
+    public float fartMeterValue = 0;
+
+    public Slider fartMeterSlider;
 
     public static GameStateManager Instance { get; private set; }
 
@@ -30,18 +33,24 @@ public class GameStateManager : MonoBehaviour
 
     public void FillUpFarts()
     {
-        float n = Random.Range(0.2f, 0.4f);
-        fartMeter += n;
+        float n = Random.Range(0.3f, 0.4f);
+        fartMeterValue += n;
+        fartMeterSlider.value = fartMeterValue;
         if (n >= 1f)
         {
             //Show fartbutton!
         }
     }
 
+    public void ResetFarts()
+    {
+        fartMeterValue = 0;
+    }
+
     public void AddScore(float reactionTime, float fillSpeed)
     {
         float threshold = fillSpeed * 0.25f;
-
+        FillUpFarts();
         if (reactionTime <= threshold)
             score += 125;
         else

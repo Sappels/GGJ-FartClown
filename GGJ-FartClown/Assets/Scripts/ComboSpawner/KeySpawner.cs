@@ -8,11 +8,14 @@ public class KeySpawner : MonoBehaviour
 {
     // public static KeySpawner Instance { get; private set; }
     public Transform keySpawnPoint;
+    public Transform FartSpawnPoint;
+    public GameObject Fart;
+    public GameObject FartPrefab;
     public GameObject spawnedKey;
     public GameObject keyPrefab;
     public GameObject Success;
 
-    public Sprite z, x, c, v;
+    public Sprite z, x, c, v, fart;
 
     public void CorrectKey()
     {
@@ -29,6 +32,27 @@ public class KeySpawner : MonoBehaviour
         Destroy(spawnedKey);
         spawnedKey = null;
     }
+
+    public void DestroyFartKey()
+    {
+        if (Fart)
+        {
+
+            Destroy(Fart);
+            Fart = null;
+        }
+    }
+
+    public void SpawnFart(float keySpeed)
+    {
+        Fart = Instantiate(FartPrefab.gameObject, FartSpawnPoint);
+        Fart.GetComponent<KeyClass>().Key = "Space";
+        Fart.GetComponent<KeyClass>().FillSpeed = keySpeed;
+        // GameObject textObj = spawnedKey.transform.Find("Canvas/Key").gameObject;
+        GameObject imageObj = Fart.transform.Find("Canvas/KeyImage").gameObject;
+        imageObj.GetComponent<Image>().sprite = fart;
+
+    }
     public void SpawnKey(string KeyName, float keySpeed)
     {
         if (spawnedKey != null)
@@ -39,10 +63,10 @@ public class KeySpawner : MonoBehaviour
         spawnedKey = Instantiate(keyPrefab.gameObject, keySpawnPoint);
         spawnedKey.GetComponent<KeyClass>().Key = KeyName;
         spawnedKey.GetComponent<KeyClass>().FillSpeed = keySpeed;
-        GameObject textObj = spawnedKey.transform.Find("Canvas/Key").gameObject;
+        // GameObject textObj = spawnedKey.transform.Find("Canvas/Key").gameObject;
         GameObject imageObj = spawnedKey.transform.Find("Canvas/KeyImage").gameObject;
 
-        textObj.GetComponent<TMPro.TMP_Text>().text = KeyName;
+        // textObj.GetComponent<TMPro.TMP_Text>().text = KeyName;
 
         switch (KeyName)
         {
@@ -58,7 +82,7 @@ public class KeySpawner : MonoBehaviour
             case "V":
                 imageObj.GetComponent<Image>().sprite = v;
                 break;
-        
+
             default:
                 break;
         }

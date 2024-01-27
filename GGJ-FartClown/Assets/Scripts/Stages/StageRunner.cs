@@ -8,6 +8,7 @@ using System;
 
 public class StageRunner : MonoBehaviour
 {
+
     [SerializeField] private float FillSpeed = 5f;
     [SerializeField] private Transform m_spawnPoint;
     [SerializeField] private Pizza m_pizzaPrefab;
@@ -16,6 +17,7 @@ public class StageRunner : MonoBehaviour
 
     private void Start()
     {
+
         //GameStateManager.Instance.currState = GameState.RUNNING;
         PlaceNewPizza();
     }
@@ -49,6 +51,7 @@ public class StageRunner : MonoBehaviour
         m_activePizza = Instantiate(m_pizzaPrefab);
         m_activePizza.transform.position = startSpawnPoint;
 
+        FartManager.Instance.UrgeToFart(FillSpeed);
         ComboManager.Instance.GenerateCombo(FillSpeed);
 
     }

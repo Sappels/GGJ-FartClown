@@ -10,9 +10,7 @@ public class ComboManager : MonoBehaviour
     public float FillSpeed = 5f;
     public KeySpawner keySpawner;
     public float lastSpawnTime = 0;
-    public KeyCode[] Combo;
     public KeyCode currKey;
-    public int currIndex = 0;
     public StageRunner stageRunner;
     // Start is called before the first frame update
     void Awake()
@@ -32,28 +30,17 @@ public class ComboManager : MonoBehaviour
     void Start()
     {
 
-        //CauseKeySpawner is called and array starts with 0
-        // currIndex = -1;
-        // GenerateCombo();
-        // SpawnNextKey(FillSpeed);
     }
 
-    public void GenerateCombo(int length, float newFillSpeed)
+    public void GenerateCombo(float newFillSpeed)
     {
-        FillSpeed = newFillSpeed;
-        // ReduceFillSpeed()
         KeyCode[] AvailableKeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V };
-        List<KeyCode> randomElements = new List<KeyCode>();
-        for (int i = 0; i < length; i++)
-        {
-            int randomIndex = Random.Range(0, AvailableKeys.Length);
-            randomElements.Add(AvailableKeys[randomIndex]);
-        }
-
-        Combo = randomElements.ToArray();
-        currIndex = -1;
+        int newKeyIndex = Random.Range(0, AvailableKeys.Length);
+        currKey = AvailableKeys[newKeyIndex];
+        FillSpeed = newFillSpeed;
         SpawnNextKey(FillSpeed);
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,26 +54,21 @@ public class ComboManager : MonoBehaviour
     }
     public void VerifyKey(KeyCode keyDown)
     {
-        if (currIndex < Combo.Length && keyDown == Combo[currIndex])
+        if (keyDown == currKey)
         {
             Debug.Log("Got a new key");
             CalculateSpeed();
-            stageRunner.EatPizzaSlice();
+            bool didNewPizzaSpawn = stageRunner.EatPizzaSlice();
             keySpawner.CorrectKey();
-
-            SpawnNextKey(FillSpeed);
+            Debug.Log("Called in Verify");
+            GenerateCombo(FillSpeed);
         }
     }
 
     public void SpawnNextKey(float FillSpeed)
     {
         lastSpawnTime = Time.time;
-        currIndex++;
-        if (currIndex < Combo.Length)
-        {
-            Debug.Log("Spawning new key at index: " + currIndex + "" + Combo[currIndex] + "==" + string.Join(", ", Combo));
-            keySpawner.SpawnKey(Combo[currIndex].ToString(), FillSpeed);
-        }
+        keySpawner.SpawnKey(currKey.ToString(), FillSpeed);
     }
 
     public void WinCondition()

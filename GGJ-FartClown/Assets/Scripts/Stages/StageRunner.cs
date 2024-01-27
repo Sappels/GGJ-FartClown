@@ -22,15 +22,16 @@ public class StageRunner : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            EatPizzaSlice();
+        // if (Input.GetKeyDown(KeyCode.P))
+        //     EatPizzaSlice();
     }
 
     public void EatPizzaSlice()
     {
-        bool ateSlice = m_activePizza.EatSlice();
-        if (!ateSlice)
+        bool pizzaLeft = m_activePizza.EatSlice();
+        if (!pizzaLeft)
         {
+            Debug.Log("Pizza all slices eaten!");
             PlaceNewPizza();
             GameStateManager.Instance.pizzasEaten++;
         }
@@ -46,8 +47,8 @@ public class StageRunner : MonoBehaviour
         Vector3 startSpawnPoint = m_spawnPoint.position;
         m_activePizza = Instantiate(m_pizzaPrefab);
         m_activePizza.transform.position = startSpawnPoint;
-        
-        ComboManager.Instance.GenerateCombo(6, FillSpeed);
+
+        ComboManager.Instance.GenerateCombo(FillSpeed);
 
     }
 }

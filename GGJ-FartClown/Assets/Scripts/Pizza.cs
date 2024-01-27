@@ -14,9 +14,8 @@ public class Pizza : MonoBehaviour
             int randomSlice = Random.Range(0, m_PizzaSlices.Count);
             m_PizzaSlices[randomSlice].SetActive(false);
             m_PizzaSlices.RemoveAt(randomSlice);
-            return true;
         }
 
-        return false;
+        return m_PizzaSlices.Count > 0 ? true : false;
     }
 }

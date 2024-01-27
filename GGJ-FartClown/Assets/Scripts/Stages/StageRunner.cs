@@ -50,17 +50,9 @@ public class StageRunner : MonoBehaviour
 
     public void EatPizzaSlice()
     {
-        if (!m_activePizza.EatSlice())
+        bool state = m_activePizza.EatSlice();
+        if (!state)
         {
-            // m_pizzaNumber++;
-
-            // if (m_pizzas.Count > m_pizzaNumber)
-            // {
-            m_activePizza.EatSlice();
-        }
-        else
-        {
-            // SetUpNextStage();
             PlacePizzas();
         }
     }
@@ -70,6 +62,7 @@ public class StageRunner : MonoBehaviour
     // Spawn pizzas starting from the left, then spawn them in sequence from left to right
     private void PlacePizzas()
     {
+
         if (FillSpeed > 0.5f)
         {
             FillSpeed -= 0.25f;
@@ -77,6 +70,7 @@ public class StageRunner : MonoBehaviour
         Vector3 startSpawnPoint = m_spawnPoint.position;
         m_activePizza = Instantiate(m_pizzaPrefab);
         ComboManager.Instance.GenerateCombo(6, FillSpeed);
+
     }
 
 

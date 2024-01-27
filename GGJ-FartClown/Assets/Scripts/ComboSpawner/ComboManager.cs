@@ -56,10 +56,15 @@ public class ComboManager : MonoBehaviour
     {
         if (keyDown == currKey)
         {
-            Debug.Log("Got a new key");
+            //Debug.Log("Got a new key");
             CalculateSpeed();
             stageRunner.EatPizzaSlice();
             keySpawner.CorrectKey();
+            GenerateCombo(FillSpeed);
+        }
+        else
+        {
+            keySpawner.WrongKey();
             GenerateCombo(FillSpeed);
         }
     }

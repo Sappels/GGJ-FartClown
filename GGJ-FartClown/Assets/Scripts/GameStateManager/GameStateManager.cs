@@ -36,9 +36,9 @@ public class GameStateManager : MonoBehaviour
         float n = Random.Range(0.3f, 0.4f);
         fartMeterValue += n;
         fartMeterSlider.value = fartMeterValue;
-        if (n >= 1f)
+        if (fartMeterValue >= 1f)
         {
-            //Show fartbutton!
+            FartManager.Instance.UrgeToFart(3);
         }
     }
 
@@ -60,6 +60,7 @@ public class GameStateManager : MonoBehaviour
     public void MissedKey()
     {
         keysMissed++;
+        Debug.Log("You missed a key, keys missed: " + keysMissed);
         if (keysMissed >= 3) GameOver();
     }
 
@@ -70,6 +71,8 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("You lost!");
+        Time.timeScale = 0;
         //Call this method when a loss condition has been met
         //Shows a Game Over screen with pizzas eaten, times farted and score
     }

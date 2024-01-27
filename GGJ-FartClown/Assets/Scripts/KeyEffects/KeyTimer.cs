@@ -21,8 +21,6 @@ public class KeyTimer : MonoBehaviour
         Key = parent.GetComponent<KeyClass>();
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +33,15 @@ public class KeyTimer : MonoBehaviour
         if ((Time.time - SpawnTime) > Key.FillSpeed)
         {
             Destroy(gameObject);
+            if (Key.Key == "Space")
+            {
+                GameStateManager.Instance.GameOver();
+            }
+            else
+            {
+                GameStateManager.Instance.MissedKey();
+                GameStateManager.Instance.gameObject.GetComponent<KeySpawner>().DestroyKey();
+            }
             //GameStateManager.Instance.YouLose();
         }
 

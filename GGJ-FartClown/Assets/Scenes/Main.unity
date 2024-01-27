@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &184925574 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8879367926278447701, guid: a959d35098275aa4989f4c7258cf808f, type: 3}
+  m_PrefabInstance: {fileID: 400705192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &380929941
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +142,7 @@ GameObject:
   - component: {fileID: 380929942}
   - component: {fileID: 380929946}
   - component: {fileID: 380929947}
+  - component: {fileID: 380929948}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -176,6 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keySpawnPoint: {fileID: 1852737879}
+  FartSpawnPoint: {fileID: 1852737879}
+  Fart: {fileID: 0}
+  FartPrefab: {fileID: 9039464902215667803, guid: 40bc54d5f46bfd94e96050768b26120f, type: 3}
   spawnedKey: {fileID: 0}
   keyPrefab: {fileID: 9039464902215667803, guid: 466095cd837f9d545a1629b6f5eb67b4, type: 3}
   Success: {fileID: 2179285917947928691, guid: 111f8f1cf1ebbfe42a8d8b8d1577d418, type: 3}
@@ -183,6 +192,7 @@ MonoBehaviour:
   x: {fileID: 21300000, guid: 1b34b97aaa86c8649b240053108f5932, type: 3}
   c: {fileID: 21300000, guid: 0f00cc355e607784c9e7b81947f76018, type: 3}
   v: {fileID: 21300000, guid: ecf6065a125f9ee4798720bb46a30aba, type: 3}
+  fart: {fileID: 21300000, guid: bd529018e1abd5c469141527248024db, type: 3}
 --- !u!114 &380929944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +252,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3fe101ff12c0a49a621ce6365d4cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &380929948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380929941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98677b6f32c8ac541b4cfb8e87573fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keySpawner: {fileID: 0}
+  FartPrefab: {fileID: 8588435135744789792, guid: 0f815f526f65c7e4eb4cd8b6a6fd5538, type: 3}
+  Butt: {fileID: 184925574}
 --- !u!1001 &400705192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,7 +420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &502017913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1157,6 +1182,7 @@ RectTransform:
   m_Children:
   - {fileID: 502017913}
   - {fileID: 599040281}
+  - {fileID: 1763455134}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1382,12 +1408,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763455131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -501.5, y: -361, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1529093125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852737878
 GameObject:
@@ -1497,7 +1523,6 @@ SceneRoots:
   - {fileID: 1075936299}
   - {fileID: 1567560864}
   - {fileID: 1529093125}
-  - {fileID: 1763455134}
   - {fileID: 380929945}
   - {fileID: 1852737879}
   - {fileID: 1942849616}

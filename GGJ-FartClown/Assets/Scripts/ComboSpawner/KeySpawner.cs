@@ -15,21 +15,32 @@ public class KeySpawner : MonoBehaviour
     public GameObject keyPrefab;
     public GameObject Success;
 
+    //public GameObject currentKey;
+
+    ComboManager comboManager;
+
     public Sprite z, x, c, v, fart;
+
+
+    private void Start()
+    {
+        comboManager = GetComponent<ComboManager>();
+    }
 
     public void CorrectKey()
     {
         Instantiate(Success, keySpawnPoint);
-        DestroyKey();
     }
     public void WrongKey()
     {
-        DestroyKey();
-
+        GameStateManager.Instance.MissedKey();
+        Debug.Log("Pressed the wrong key");
     }
     public void DestroyKey()
     {
+        Debug.Log("Key was destroyed");
         Destroy(spawnedKey);
+        //Here we need to spawn a new key, getting stackoverflow when calling combomanager
         spawnedKey = null;
     }
 
@@ -37,7 +48,6 @@ public class KeySpawner : MonoBehaviour
     {
         if (Fart)
         {
-
             Destroy(Fart);
             Fart = null;
         }
@@ -46,7 +56,7 @@ public class KeySpawner : MonoBehaviour
     public void SpawnFart(float keySpeed)
     {
         Fart = Instantiate(FartPrefab.gameObject, FartSpawnPoint);
-        Fart.GetComponent<KeyClass>().Key = "Space";
+        //Fart.GetComponent<KeyClass>().Key = "Space";
         Fart.GetComponent<KeyClass>().FillSpeed = keySpeed;
         // GameObject textObj = spawnedKey.transform.Find("Canvas/Key").gameObject;
         GameObject imageObj = Fart.transform.Find("Canvas/KeyImage").gameObject;
@@ -59,6 +69,7 @@ public class KeySpawner : MonoBehaviour
         {
             DestroyKey();
         }
+
 
         spawnedKey = Instantiate(keyPrefab.gameObject, keySpawnPoint);
         spawnedKey.GetComponent<KeyClass>().Key = KeyName;

@@ -51,7 +51,7 @@ public class StageRunner : MonoBehaviour
         m_activePizza = Instantiate(m_pizzaPrefab);
         m_activePizza.transform.position = startSpawnPoint;
 
-        FartManager.Instance.UrgeToFart(FillSpeed);
+        //FartManager.Instance.UrgeToFart(FillSpeed);
         ComboManager.Instance.GenerateCombo(FillSpeed);
 
     }

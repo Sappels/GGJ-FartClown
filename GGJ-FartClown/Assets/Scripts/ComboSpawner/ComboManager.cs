@@ -38,6 +38,7 @@ public class ComboManager : MonoBehaviour
 
     public void GenerateCombo(int length)
     {
+        // ReduceFillSpeed()
         currIndex = -1;
         KeyCode[] AvailableKeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V };
         List<KeyCode> randomElements = new List<KeyCode>();

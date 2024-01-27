@@ -10,85 +10,46 @@ public class StageRunner : MonoBehaviour
 {
     [SerializeField] private float FillSpeed = 5f;
     [SerializeField] private Transform m_spawnPoint;
-    // [SerializeField] private TMPro.TMP_Text m_timerUI;
-    // [SerializeField] private float m_spaceBetweenPizzas;
     [SerializeField] private Pizza m_pizzaPrefab;
 
-    // private float m_timer;
-    // private int m_stageNumber = 0;
-
-
     private Pizza m_activePizza;
-    // private int m_pizzaNumber = 0;
-
-    // public List<Pizza> m_pizzas = new List<Pizza>();
 
     private void Start()
     {
         GameStateManager.Instance.currState = GameState.RUNNING;
-        PlacePizzas();
-        // SetUpNextStage();
+        PlaceNewPizza();
     }
 
-    // private void Update()
-    // {
-    //     if (GameStateManager.Instance.currState == GameState.RUNNING)
-    //     {
-    //         m_timer -= Time.deltaTime;
-    //         m_timerUI.text = "Time: " + m_timer.ToString("F2");
-    //     }
-
-    //     if (m_timer < 0)
-    //     {
-    //         GameStateManager.Instance.currState = GameState.LOOSE;
-    //     }
-    //     // FailedStage();
-
-    //     // if (Input.GetKeyDown(KeyCode.P))
-    //     //     EatPizzaSlice();
-    // }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            EatPizzaSlice();
+    }
 
     public void EatPizzaSlice()
     {
-        bool state = m_activePizza.EatSlice();
-        if (!state)
+        bool ateSlice = m_activePizza.EatSlice();
+        if (!ateSlice)
         {
-            PlacePizzas();
+            PlaceNewPizza();
         }
     }
 
-
-
-    // Spawn pizzas starting from the left, then spawn them in sequence from left to right
-    private void PlacePizzas()
+    private void PlaceNewPizza()
     {
-
         if (FillSpeed > 0.5f)
         {
             FillSpeed -= 0.25f;
         }
+
         Vector3 startSpawnPoint = m_spawnPoint.position;
         m_activePizza = Instantiate(m_pizzaPrefab);
+        m_activePizza.transform.position = startSpawnPoint;
+        
         ComboManager.Instance.GenerateCombo(6, FillSpeed);
 
     }
-
-
 }
-// public void FailedStage()
-// {
-//     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-// }
-
-// [Serializable]
-// private struct Stage
-// {
-//     public float Time;
-//     public int Pizzas;
-// }
-// }
-
-
 
 // using System.Collections;
 // using System.Collections.Generic;

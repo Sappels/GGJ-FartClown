@@ -17,7 +17,7 @@ public class StageRunner : MonoBehaviour
     private void Start()
     {
         GameStateManager.Instance.currState = GameState.RUNNING;
-        PlacePizzas();
+        PlaceNewPizza();
     }
 
     private void Update()
@@ -28,18 +28,14 @@ public class StageRunner : MonoBehaviour
 
     public void EatPizzaSlice()
     {
-        bool state = m_activePizza.EatSlice();
-        if (!state)
+        bool ateSlice = m_activePizza.EatSlice();
+        if (!ateSlice)
         {
-            m_activePizza.EatSlice();
-        }
-        else
-        {
-            PlacePizzas();
+            PlaceNewPizza();
         }
     }
 
-    private void PlacePizzas()
+    private void PlaceNewPizza()
     {
         if (FillSpeed > 0.5f)
         {

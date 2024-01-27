@@ -57,7 +57,17 @@ public class ComboManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currIndex < Combo.Length && Input.GetKeyDown(Combo[currIndex]))
+
+    }
+
+    public void CalculateSpeed()
+    {
+        float reactionTime = Time.time - lastSpawnTime;
+        // Debug.Log("Reacted in " + reactionTime);
+    }
+    public void VerifyKey(KeyCode keyDown)
+    {
+        if (currIndex < Combo.Length && keyDown == Combo[currIndex])
         {
             Debug.Log("Got a new key");
             CalculateSpeed();
@@ -67,19 +77,6 @@ public class ComboManager : MonoBehaviour
             SpawnNextKey(FillSpeed);
         }
     }
-
-    public void CalculateSpeed()
-    {
-        float reactionTime = Time.time - lastSpawnTime;
-        // Debug.Log("Reacted in " + reactionTime);
-    }
-    // public void VerifyKey(KeyCode keyDown)
-    // {
-    //     if (keyDown == Combo[currIndex])
-    //     {
-    //         SpawnNextKey();
-    //     }
-    // }
 
     public void SpawnNextKey(float FillSpeed)
     {

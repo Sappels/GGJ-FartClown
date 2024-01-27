@@ -55,12 +55,12 @@ public class GameStateManager : MonoBehaviour
             score += 125;
         else
             score += 100;
+
     }
 
     public void MissedKey()
     {
         keysMissed++;
-        Debug.Log("You missed a key, keys missed: " + keysMissed);
         if (keysMissed >= 3) GameOver();
     }
 

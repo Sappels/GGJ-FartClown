@@ -28,7 +28,7 @@ public class StageRunner : MonoBehaviour
         //     EatPizzaSlice();
     }
 
-    public void EatPizzaSlice()
+    public void EatPizzaSlice(float reactionTime, float fillSpeed)
     {
         bool pizzaLeft = m_activePizza.EatSlice();
         if (!pizzaLeft)
@@ -36,7 +36,8 @@ public class StageRunner : MonoBehaviour
             Debug.Log("Pizza all slices eaten!");
             PlaceNewPizza();
             GameStateManager.Instance.pizzasEaten++;
-            GameStateManager.Instance.FillUpFarts();
+            GameStateManager.Instance.AddScore(reactionTime, fillSpeed);
+            //GameStateManager.Instance.FillUpFarts();
         }
     }
 

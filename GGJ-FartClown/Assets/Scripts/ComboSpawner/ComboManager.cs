@@ -41,24 +41,19 @@ public class ComboManager : MonoBehaviour
         SpawnNextKey(FillSpeed);
     }
 
-    // Update is called once per frame
-    void Update()
+    public float CalculateSpeed()
     {
-
-    }
-
-    public void CalculateSpeed()
-    {
-        float reactionTime = Time.time - lastSpawnTime;
+        return Time.time - lastSpawnTime;
         // Debug.Log("Reacted in " + reactionTime);
+
     }
     public void VerifyKey(KeyCode keyDown)
     {
         if (keyDown == currKey)
         {
             //Debug.Log("Got a new key");
-            CalculateSpeed();
-            stageRunner.EatPizzaSlice();
+            //CalculateSpeed();
+            stageRunner.EatPizzaSlice(CalculateSpeed(), FillSpeed);
             keySpawner.CorrectKey();
             GenerateCombo(FillSpeed);
         }

@@ -34,11 +34,9 @@ public class KeySpawner : MonoBehaviour
     public void WrongKey()
     {
         GameStateManager.Instance.MissedKey();
-        Debug.Log("Pressed the wrong key");
     }
     public void DestroyKey()
     {
-        Debug.Log("Key was destroyed");
         Destroy(spawnedKey);
         //Here we need to spawn a new key, getting stackoverflow when calling combomanager
         spawnedKey = null;

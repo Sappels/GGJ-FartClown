@@ -10,7 +10,8 @@ public class GameStateManager : MonoBehaviour
     public int keysMissed = 0;
     public int timesFarted = 0;
     public int pizzasEaten = 0;
-    public float score;
+    public float score = 0;
+    public float fartMeter = 0;
 
     public static GameStateManager Instance { get; private set; }
 
@@ -24,6 +25,16 @@ public class GameStateManager : MonoBehaviour
         else
         {
             Instance = this;
+        }
+    }
+
+    public void FillUpFarts()
+    {
+        float n = Random.Range(0.2f, 0.4f);
+        fartMeter += n;
+        if (n >= 1f)
+        {
+            //Show fartbutton!
         }
     }
 

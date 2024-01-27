@@ -5,7 +5,8 @@ using UnityEngine;
 public class FartManager : MonoBehaviour
 {
     public static FartManager Instance { get; private set; }
-
+    public GameObject FartPrefab;
+    public Transform Butt;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,7 +26,7 @@ public class FartManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // GetComponent<Animator>().SetTrigger("Fart");
+            Instantiate(FartPrefab, Butt);
             ReleaseTheGasss();
         }
     }

@@ -60,7 +60,6 @@ public class ComboManager : MonoBehaviour
             CalculateSpeed();
             stageRunner.EatPizzaSlice();
             keySpawner.CorrectKey();
-            Debug.Log("Called in Verify");
             GenerateCombo(FillSpeed);
         }
     }

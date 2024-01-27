@@ -8,8 +8,18 @@ public class KeySpawner : MonoBehaviour
     public Transform keySpawnPoint;
     public GameObject spawnedKey;
     public GameObject keyPrefab;
+    public GameObject Success;
 
+    public void CorrectKey()
+    {
+        Instantiate(Success, keySpawnPoint);
+        DestroyKey();
+    }
+    public void WrongKey()
+    {
+        DestroyKey();
 
+    }
     public void DestroyKey()
     {
         Destroy(spawnedKey);
@@ -23,9 +33,7 @@ public class KeySpawner : MonoBehaviour
         }
 
         spawnedKey = Instantiate(keyPrefab.gameObject, keySpawnPoint);
-        Debug.Log(spawnedKey);
-        GameObject textObj = spawnedKey.transform.Find("Key").gameObject;
-        Debug.Log(textObj);
+        GameObject textObj = spawnedKey.transform.Find("Canvas/Key").gameObject;
 
         textObj.GetComponent<TMPro.TMP_Text>().text = KeyName;
 

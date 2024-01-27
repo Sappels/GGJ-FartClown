@@ -25,19 +25,26 @@ public class StageRunner : MonoBehaviour
 
     private void Start()
     {
+        GameStateManager.Instance.currState = GameState.RUNNING;
         SetUpNextStage();
     }
 
     private void Update()
     {
-        m_timer -= Time.deltaTime;
-        m_timerUI.text = "Time: " + m_timer.ToString("F2");
+        if (GameStateManager.Instance.currState == GameState.RUNNING)
+        {
+            m_timer -= Time.deltaTime;
+            m_timerUI.text = "Time: " + m_timer.ToString("F2");
+        }
 
         if (m_timer < 0)
-            FailedStage();
+        {
+            GameStateManager.Instance.currState = GameState.LOOSE;
+        }
+        // FailedStage();
 
-        if (Input.GetKeyDown(KeyCode.P))
-            EatPizzaSlice();
+        // if (Input.GetKeyDown(KeyCode.P))
+        //     EatPizzaSlice();
     }
 
     public void EatPizzaSlice()
@@ -64,12 +71,15 @@ public class StageRunner : MonoBehaviour
         if (stages.Count < m_stageNumber + 1)
         {
             // Win
+            GameStateManager.Instance.YouWin();
             return false;
         }
 
         CleanUpStagesPizzas();
 
         Stage stage = stages[m_stageNumber];
+        Debug.Log("Calling a another Stage: ");
+        ComboManager.Instance.GenerateCombo(stage.Pizzas * 6);
         m_timer = stage.Time;
         PlacePizzas(stage.Pizzas);
 

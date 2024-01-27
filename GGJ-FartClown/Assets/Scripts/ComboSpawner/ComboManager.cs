@@ -10,10 +10,12 @@ public class ComboManager : MonoBehaviour
     public float lastSpawnTime = 0;
     public KeyCode[] Combo;
     public KeyCode currKey;
-    public int currIndex = 0;
+    public int currIndex = -1;
+    public StageRunner stageRunner;
     // Start is called before the first frame update
     void Awake()
     {
+        stageRunner = GetComponent<StageRunner>();
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -30,21 +32,32 @@ public class ComboManager : MonoBehaviour
 
         //CauseKeySpawner is called and array starts with 0
         currIndex = -1;
-        GenerateCombo();
+        // GenerateCombo();
         SpawnNextKey();
     }
 
-    void GenerateCombo()
+    public void GenerateCombo(int length)
     {
-        currIndex = 0;
-        Combo = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V };
+        currIndex = -1;
+        KeyCode[] AvailableKeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V };
+        List<KeyCode> randomElements = new List<KeyCode>();
+        for (int i = 0; i < length; i++)
+        {
+            int randomIndex = Random.Range(0, AvailableKeys.Length);
+            randomElements.Add(AvailableKeys[randomIndex]);
+        }
+
+        Combo = randomElements.ToArray();
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(Combo[currIndex]))
+        if (currIndex < Combo.Length && Input.GetKeyDown(Combo[currIndex]))
         {
             CalculateSpeed();
+            stageRunner.EatPizzaSlice();
+            keySpawner.CorrectKey();
+
             SpawnNextKey();
         }
     }
@@ -54,26 +67,21 @@ public class ComboManager : MonoBehaviour
         float reactionTime = Time.time - lastSpawnTime;
         Debug.Log("Reacted in " + reactionTime);
     }
-    public void VerifyKey(KeyCode keyDown)
-    {
-        if (keyDown == Combo[currIndex])
-        {
-            SpawnNextKey();
-        }
-    }
+    // public void VerifyKey(KeyCode keyDown)
+    // {
+    //     if (keyDown == Combo[currIndex])
+    //     {
+    //         SpawnNextKey();
+    //     }
+    // }
 
     public void SpawnNextKey()
     {
-        keySpawner.DestroyKey();
         lastSpawnTime = Time.time;
         currIndex++;
-        if (Combo.Length == currIndex)
+        if (currIndex < Combo.Length)
         {
-            WinCondition();
-        }
-        else
-        {
-            Debug.Log("Spawning new key at index: " + currIndex + "" + Combo[currIndex]);
+            Debug.Log("Spawning new key at index: " + currIndex + "" + Combo[currIndex] + string.Join(", ", Combo));
             keySpawner.SpawnKey(Combo[currIndex].ToString());
         }
     }
@@ -81,6 +89,6 @@ public class ComboManager : MonoBehaviour
     public void WinCondition()
     {
         GameStateManager.Instance.YouWin();
-        GenerateCombo();
+        // GenerateCombo();
     }
 }

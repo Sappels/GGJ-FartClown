@@ -8,6 +8,7 @@ public class Pizza : MonoBehaviour
 
     public bool EatSlice()
     {
+        Debug.Log("Pizza State" + m_PizzaSlices.Count);
         if (m_PizzaSlices.Count > 0)
         {
             int randomSlice = Random.Range(0, m_PizzaSlices.Count);

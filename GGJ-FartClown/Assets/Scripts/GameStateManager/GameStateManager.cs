@@ -8,6 +8,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text m_timerUI;
 
     public int keysMissed = 0;
+    public int timesFarted = 0;
+    public int pizzasEaten = 0;
     public float score;
 
     public static GameStateManager Instance { get; private set; }

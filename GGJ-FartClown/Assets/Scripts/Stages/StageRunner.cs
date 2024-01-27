@@ -32,6 +32,7 @@ public class StageRunner : MonoBehaviour
         if (!ateSlice)
         {
             PlaceNewPizza();
+            GameStateManager.Instance.pizzasEaten++;
         }
     }
 

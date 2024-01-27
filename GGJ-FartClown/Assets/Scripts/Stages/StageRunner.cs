@@ -41,7 +41,6 @@ public class StageRunner : MonoBehaviour
 
     private void PlacePizzas()
     {
-
         if (FillSpeed > 0.5f)
         {
             FillSpeed -= 0.25f;
@@ -54,8 +53,6 @@ public class StageRunner : MonoBehaviour
         ComboManager.Instance.GenerateCombo(6, FillSpeed);
 
     }
-
-
 }
 
 // using System.Collections;

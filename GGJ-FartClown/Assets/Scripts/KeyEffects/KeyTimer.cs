@@ -35,7 +35,7 @@ public class KeyTimer : MonoBehaviour
         if ((Time.time - SpawnTime) > Key.FillSpeed)
         {
             Destroy(gameObject);
-            GameStateManager.Instance.YouLose();
+            //GameStateManager.Instance.YouLose();
         }
 
     }

@@ -91,7 +91,8 @@ public class ComboManager : MonoBehaviour
 
     public void WinCondition()
     {
-        GameStateManager.Instance.YouWin();
+        //Commented this out because it was causing an error and we don't need to call for "win" anyway // Viktor
+        //GameStateManager.Instance.YouWin();
         // GenerateCombo();
     }
 }

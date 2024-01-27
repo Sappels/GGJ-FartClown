@@ -16,7 +16,7 @@ public class StageRunner : MonoBehaviour
 
     private void Start()
     {
-        GameStateManager.Instance.currState = GameState.RUNNING;
+        //GameStateManager.Instance.currState = GameState.RUNNING;
         PlaceNewPizza();
     }
 

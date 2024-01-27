@@ -58,7 +58,7 @@ public class ComboManager : MonoBehaviour
         {
             Debug.Log("Got a new key");
             CalculateSpeed();
-            bool didNewPizzaSpawn = stageRunner.EatPizzaSlice();
+            stageRunner.EatPizzaSlice();
             keySpawner.CorrectKey();
             Debug.Log("Called in Verify");
             GenerateCombo(FillSpeed);

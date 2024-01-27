@@ -37,6 +37,7 @@ public class FartManager : MonoBehaviour
     {
         keySpawner.DestroyFartKey();
         Instantiate(FartPrefab, Butt);
+        AudioManager.Instance.PlayFartSound();
         GameStateManager.Instance.timesFarted++;
         GameStateManager.Instance.fartMeterValue = 0;
         GameStateManager.Instance.fartMeterSlider.value = 0;

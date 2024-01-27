@@ -31,6 +31,7 @@ public class StageRunner : MonoBehaviour
     public void EatPizzaSlice(float reactionTime, float fillSpeed)
     {
         bool pizzaLeft = m_activePizza.EatSlice();
+        AudioManager.Instance.PlayEatingSound();
         if (!pizzaLeft)
         {
             Debug.Log("Pizza all slices eaten!");

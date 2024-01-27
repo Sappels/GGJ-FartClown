@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3451555485019487412}
   - component: {fileID: 739589255223369263}
   - component: {fileID: 5307811983437427197}
+  - component: {fileID: 5448366336168614707}
   m_Layer: 0
   m_Name: Pizza
   m_TagString: Untagged
@@ -96,6 +97,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5448366336168614707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163501923258537954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c06182f7147e04ba7c58184a453bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PizzaSlices:
+  - {fileID: 7595537411770341292}
+  - {fileID: 4934698529456629759}
+  - {fileID: 2867816828807795618}
+  - {fileID: 1214153513573312227}
+  - {fileID: 7742152262140490939}
+  - {fileID: 6084330759740848412}
 --- !u!1 &659653628540853317
 GameObject:
   m_ObjectHideFlags: 0

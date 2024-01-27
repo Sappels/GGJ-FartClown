@@ -15,7 +15,11 @@ public class StageRunner : MonoBehaviour
     [SerializeField] private Pizza m_pizzaPrefab;
 
     private float m_timer;
-    private int m_stageNumber = 1;
+    private int m_stageNumber = 0;
+
+
+    private Pizza m_activePizza;
+    private int m_pizzaNumber = 0;
 
     public List<Pizza> m_pizzas = new List<Pizza>();
 
@@ -33,20 +37,56 @@ public class StageRunner : MonoBehaviour
             FailedStage();
 
         if (Input.GetKeyDown(KeyCode.P))
-            SetUpNextStage();
+            EatPizzaSlice();
     }
+
+    public void EatPizzaSlice()
+    {
+        if (!m_activePizza.EatSlice())
+        {
+            m_pizzaNumber++;
+
+            if (m_pizzas.Count > m_pizzaNumber)
+            {
+                m_activePizza = m_pizzas[m_pizzaNumber];
+                m_activePizza.EatSlice();
+            }
+            else
+            {
+                SetUpNextStage();
+            }
+        }
+    }
+
 
     private bool SetUpNextStage()
     {
-        if (stages.Count < m_stageNumber)
+        if (stages.Count < m_stageNumber + 1)
+        {
+            // Win
             return false;
+        }
 
-        Stage stage = stages[m_stageNumber - 1];
+        CleanUpStagesPizzas();
+
+        Stage stage = stages[m_stageNumber];
         m_timer = stage.Time;
         PlacePizzas(stage.Pizzas);
+
         m_stageNumber++;
 
         return true;
+    }
+
+    private void CleanUpStagesPizzas()
+    {
+        foreach (Pizza pizza in m_pizzas)
+        {
+            pizza.gameObject.SetActive(false);
+        }
+
+        m_pizzas.Clear();
+        m_pizzaNumber = 0;
     }
 
     // Spawn pizzas starting from the left, then spawn them in sequence from left to right
@@ -62,6 +102,7 @@ public class StageRunner : MonoBehaviour
             m_pizzas.Add(pizza);
         }
 
+        m_activePizza = m_pizzas[m_pizzaNumber];
     }
 
 

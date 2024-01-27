@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Pizza : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<GameObject> m_PizzaSlices = new List<GameObject>();
 
-    // Update is called once per frame
-    void Update()
+    public bool EatSlice()
     {
-        
+        if (m_PizzaSlices.Count > 0)
+        {
+            int randomSlice = Random.Range(0, m_PizzaSlices.Count);
+            m_PizzaSlices[randomSlice].SetActive(false);
+            m_PizzaSlices.RemoveAt(randomSlice);
+            return true;
+        }
+
+        return false;
     }
 }

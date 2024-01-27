@@ -25,7 +25,7 @@ public class KeySpawner : MonoBehaviour
         Destroy(spawnedKey);
         spawnedKey = null;
     }
-    public void SpawnKey(string KeyName)
+    public void SpawnKey(string KeyName, float keySpeed)
     {
         if (spawnedKey != null)
         {
@@ -33,6 +33,8 @@ public class KeySpawner : MonoBehaviour
         }
 
         spawnedKey = Instantiate(keyPrefab.gameObject, keySpawnPoint);
+        spawnedKey.GetComponent<KeyClass>().Key = KeyName;
+        spawnedKey.GetComponent<KeyClass>().FillSpeed = keySpeed;
         GameObject textObj = spawnedKey.transform.Find("Canvas/Key").gameObject;
 
         textObj.GetComponent<TMPro.TMP_Text>().text = KeyName;

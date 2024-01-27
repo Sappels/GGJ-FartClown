@@ -401,9 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65dee5c7e832c7f4182ec43d491d0936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 9039464902215667803}
+  Key: {fileID: 0}
   TimerImage: {fileID: 0}
   FilledAmount: 1
-  FillSpeed: 5
   SpawnTime: 0
 --- !u!1 &9039464902215667803
 GameObject:
@@ -417,6 +418,7 @@ GameObject:
   - component: {fileID: 3337901515236833767}
   - component: {fileID: 2614603210858038718}
   - component: {fileID: 4755781495028454667}
+  - component: {fileID: 6783249912466395964}
   m_Layer: 0
   m_Name: Z
   m_TagString: Untagged
@@ -512,3 +514,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6783249912466395964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039464902215667803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ec2daef64da084aab9b94a37f11fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FillSpeed: 5
+  Key: 

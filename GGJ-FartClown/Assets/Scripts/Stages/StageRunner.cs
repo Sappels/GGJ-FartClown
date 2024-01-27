@@ -8,7 +8,7 @@ using System;
 
 public class StageRunner : MonoBehaviour
 {
-    [SerializeField] private float PizzaRate = 5f;
+    [SerializeField] private float FillSpeed = 5f;
     [SerializeField] private Transform m_spawnPoint;
     // [SerializeField] private TMPro.TMP_Text m_timerUI;
     // [SerializeField] private float m_spaceBetweenPizzas;
@@ -70,9 +70,13 @@ public class StageRunner : MonoBehaviour
     // Spawn pizzas starting from the left, then spawn them in sequence from left to right
     private void PlacePizzas()
     {
+        if (FillSpeed > 0.5f)
+        {
+            FillSpeed -= 0.25f;
+        }
         Vector3 startSpawnPoint = m_spawnPoint.position;
         m_activePizza = Instantiate(m_pizzaPrefab);
-        ComboManager.Instance.GenerateCombo(6);
+        ComboManager.Instance.GenerateCombo(6, FillSpeed);
     }
 
 

@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class KeyTimer : MonoBehaviour
 {
 
+    public GameObject parent;
+    public KeyClass Key;
     public Image TimerImage;
     public float FilledAmount = 1;
-    public float FillSpeed = 5f;
+    // public float FillSpeed = 5f;
     public float SpawnTime;
 
     // Start is called before the first frame update
@@ -16,24 +18,21 @@ public class KeyTimer : MonoBehaviour
     {
         TimerImage = GetComponent<Image>();
         SpawnTime = Time.time;
+        Key = parent.GetComponent<KeyClass>();
     }
 
 
-    public void ReduceFillSpeed()
-    {
-        if (FillSpeed > 0.5)
-            FillSpeed -= 0.5f;
-    }
+
     // Update is called once per frame
     void Update()
     {
 
 
-        FilledAmount = ((SpawnTime + FillSpeed) - Time.time) / FillSpeed;
+        FilledAmount = ((SpawnTime + Key.FillSpeed) - Time.time) / Key.FillSpeed;
         TimerImage.fillAmount = FilledAmount;
 
         //Can be Removed 
-        if ((Time.time - SpawnTime) > FillSpeed)
+        if ((Time.time - SpawnTime) > Key.FillSpeed)
         {
             Destroy(gameObject);
             GameStateManager.Instance.YouLose();

@@ -6,11 +6,13 @@ public class ComboManager : MonoBehaviour
 {
 
     public static ComboManager Instance { get; private set; }
+
+    public float FillSpeed = 5f;
     public KeySpawner keySpawner;
     public float lastSpawnTime = 0;
     public KeyCode[] Combo;
     public KeyCode currKey;
-    public int currIndex = -1;
+    public int currIndex = 0;
     public StageRunner stageRunner;
     // Start is called before the first frame update
     void Awake()
@@ -33,13 +35,14 @@ public class ComboManager : MonoBehaviour
         //CauseKeySpawner is called and array starts with 0
         currIndex = -1;
         // GenerateCombo();
-        SpawnNextKey();
+        SpawnNextKey(FillSpeed);
     }
 
-    public void GenerateCombo(int length)
+    public void GenerateCombo(int length, float newFillSpeed)
     {
+        FillSpeed = newFillSpeed;
         // ReduceFillSpeed()
-        currIndex = -1;
+        currIndex = 0;
         KeyCode[] AvailableKeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V };
         List<KeyCode> randomElements = new List<KeyCode>();
         for (int i = 0; i < length; i++)
@@ -53,13 +56,14 @@ public class ComboManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currIndex + "-" + Combo.Length);
         if (currIndex < Combo.Length && Input.GetKeyDown(Combo[currIndex]))
         {
             CalculateSpeed();
             stageRunner.EatPizzaSlice();
             keySpawner.CorrectKey();
 
-            SpawnNextKey();
+            SpawnNextKey(FillSpeed);
         }
     }
 
@@ -76,14 +80,14 @@ public class ComboManager : MonoBehaviour
     //     }
     // }
 
-    public void SpawnNextKey()
+    public void SpawnNextKey(float FillSpeed)
     {
         lastSpawnTime = Time.time;
         currIndex++;
         if (currIndex < Combo.Length)
         {
             Debug.Log("Spawning new key at index: " + currIndex + "" + Combo[currIndex] + string.Join(", ", Combo));
-            keySpawner.SpawnKey(Combo[currIndex].ToString());
+            keySpawner.SpawnKey(Combo[currIndex].ToString(), FillSpeed);
         }
     }
 

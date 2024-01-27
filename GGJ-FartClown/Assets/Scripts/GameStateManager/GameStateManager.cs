@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class GameStateManager : MonoBehaviour
     //public GameState currState = GameState.ENTRY;
     void Awake()
     {
+        PlayerPrefs.SetInt("score", 0);
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -73,6 +76,10 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("You lost!");
         Time.timeScale = 0;
+        PlayerPrefs.SetInt("score", 123);
+
+        SceneManager.LoadScene("GameOver");
+
         //Call this method when a loss condition has been met
         //Shows a Game Over screen with pizzas eaten, times farted and score
     }

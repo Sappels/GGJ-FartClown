@@ -43,6 +43,7 @@ public class GameStateManager : MonoBehaviour
         fartMeterValue += n;
         fartMeterSlider.value = fartMeterValue;
         AudioManager.Instance.PlayInflateSound();
+        if (fartMeterValue >= 0.95f) fartMeterValue = 1f;
         if (fartMeterValue >= 1f)
         {
             FartManager.Instance.UrgeToFart(3);

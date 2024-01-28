@@ -68,7 +68,6 @@ public class KeySpawner : MonoBehaviour
             DestroyKey();
         }
 
-
         spawnedKey = Instantiate(keyPrefab.gameObject, keySpawnPoint);
         spawnedKey.GetComponent<KeyClass>().Key = KeyName;
         spawnedKey.GetComponent<KeyClass>().FillSpeed = keySpeed;

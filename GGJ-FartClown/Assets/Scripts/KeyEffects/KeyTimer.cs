@@ -39,8 +39,8 @@ public class KeyTimer : MonoBehaviour
             }
             else
             {
-                GameStateManager.Instance.MissedKey();
                 GameStateManager.Instance.gameObject.GetComponent<KeySpawner>().DestroyKey();
+                GameStateManager.Instance.MissedKey();
             }
             //GameStateManager.Instance.YouLose();
         }

@@ -57,7 +57,6 @@ public class GameStateManager : MonoBehaviour
                stomach.transform.localScale.y,
                stomach.transform.localScale.z
                );
-        Debug.Log(stomach.transform.localScale);
     }
     public void ResetFarts()
     {
@@ -79,6 +78,10 @@ public class GameStateManager : MonoBehaviour
     {
         keysMissed++;
         if (keysMissed >= 3) GameOver();
+        else
+        {
+            ComboManager.Instance.GenerateCombo(ComboManager.Instance.FillSpeed);
+        }
     }
 
     public void ResetKeysMissed()

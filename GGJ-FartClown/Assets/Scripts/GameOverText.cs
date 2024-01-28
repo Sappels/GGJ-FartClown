@@ -11,7 +11,9 @@ public class GameOverText : MonoBehaviour
     {
         TextMeshProUGUI textMeshPro = GetComponent<TextMeshProUGUI>();
         int playerScore = PlayerPrefs.GetInt("score");
-        textMeshPro.text = "You Died \n Your Score:" + playerScore;
+        int playerFarts = PlayerPrefs.GetInt("timesFarted");
+        int playerPizzas = PlayerPrefs.GetInt("pizzasEaten");
+        textMeshPro.text = "You Died \nYour Score: " + playerScore + "\nYou farted " + playerFarts + " times \n" + "You ate " + playerPizzas + " pizzas";
 
 
 

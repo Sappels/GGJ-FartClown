@@ -12,7 +12,7 @@ public class GameStateManager : MonoBehaviour
     public int keysMissed = 0;
     public int timesFarted = 0;
     public int pizzasEaten = 0;
-    public float score = 0;
+    public int score = 0;
     public float fartMeterValue = 0;
 
     public Slider fartMeterSlider;
@@ -23,6 +23,8 @@ public class GameStateManager : MonoBehaviour
     void Awake()
     {
         PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetInt("timesFarted", 0);
+        PlayerPrefs.SetInt("pizzasEaten", 0);
 
         if (Instance != null && Instance != this)
         {
@@ -76,7 +78,9 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("You lost!");
         Time.timeScale = 0;
-        PlayerPrefs.SetInt("score", 123);
+        PlayerPrefs.SetInt("score", score);
+        PlayerPrefs.SetInt("timesFarted", timesFarted);
+        PlayerPrefs.SetInt("pizzasEaten", pizzasEaten);
 
         SceneManager.LoadScene("GameOver");
 

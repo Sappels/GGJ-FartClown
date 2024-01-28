@@ -35,7 +35,7 @@ public class KeyTimer : MonoBehaviour
             Destroy(gameObject);
             if (Key.Key == "Space")
             {
-                GameStateManager.Instance.GameOver();
+                GameStateManager.Instance.BlowUp();
             }
             else
             {

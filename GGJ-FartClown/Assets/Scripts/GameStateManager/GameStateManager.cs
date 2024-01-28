@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameStateManager : MonoBehaviour
     public float fartMeterValue = 0;
 
     public GameObject missedPrefab;
+    public GameObject clown;
+    public GameObject clownBlowUpPlaceholder;
     public Transform missedKeySpawnPoint;
     public Slider fartMeterSlider;
 
@@ -96,6 +99,17 @@ public class GameStateManager : MonoBehaviour
         keysMissed = 0;
     }
 
+    public void BlowUp()
+    {
+        Debug.Log("Blowing up");
+        clown.SetActive(false);
+        clownBlowUpPlaceholder.SetActive(true);
+
+        Debug.Log("Blowing up:GameOver");
+        Invoke("GameOver", 1.5f);
+        // GameOver();
+
+    }
     public void GameOver()
     {
         Debug.Log("You lost!");

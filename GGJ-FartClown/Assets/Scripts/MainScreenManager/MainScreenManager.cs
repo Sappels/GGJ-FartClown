@@ -25,4 +25,9 @@ public class MainScreenManager : MonoBehaviour
     {
         SceneManager.LoadScene(scene_Name);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

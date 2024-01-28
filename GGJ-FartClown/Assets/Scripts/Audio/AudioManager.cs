@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip inflate;
     public AudioClip doh;
 
+    public AudioClip pop;
+
     public static AudioManager Instance { get; private set; }
     void Awake()
     {

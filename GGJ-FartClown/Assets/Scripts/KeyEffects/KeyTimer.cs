@@ -36,6 +36,7 @@ public class KeyTimer : MonoBehaviour
             if (Key.Key == "Space")
             {
                 GameStateManager.Instance.BlowUp();
+                AudioManager.Instance.PlaySound(AudioManager.Instance.pop);
             }
             else
             {

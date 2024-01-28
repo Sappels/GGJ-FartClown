@@ -19,6 +19,8 @@ public class GameStateManager : MonoBehaviour
 
     public static GameStateManager Instance { get; private set; }
 
+    public GameObject stomach;
+
     //public GameState currState = GameState.ENTRY;
     void Awake()
     {
@@ -41,12 +43,22 @@ public class GameStateManager : MonoBehaviour
         float n = Random.Range(0.4f, 0.6f);
         fartMeterValue += n;
         fartMeterSlider.value = fartMeterValue;
+        AudioManager.Instance.PlayInflateSound();
         if (fartMeterValue >= 1f)
         {
             FartManager.Instance.UrgeToFart(3);
         }
     }
 
+    public void LateUpdate()
+    {
+        stomach.transform.localScale = new Vector3(
+               1 + 0.5f * fartMeterValue,
+               stomach.transform.localScale.y,
+               stomach.transform.localScale.z
+               );
+        Debug.Log(stomach.transform.localScale);
+    }
     public void ResetFarts()
     {
         fartMeterValue = 0;

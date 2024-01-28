@@ -36,7 +36,7 @@ public class GameStateManager : MonoBehaviour
 
     public void FillUpFarts()
     {
-        float n = Random.Range(0.3f, 0.4f);
+        float n = Random.Range(0.4f, 0.6f);
         fartMeterValue += n;
         fartMeterSlider.value = fartMeterValue;
         if (fartMeterValue >= 1f)

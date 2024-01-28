@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
     {
         int i = Random.Range(0, munching.Count);
         Debug.Log("I ate and made a sound " + i);
-        audioSource.PlayOneShot(munching[i], 0.75f);
+        audioSource.PlayOneShot(munching[i], 0.5f);
     }
 
 }

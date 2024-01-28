@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keySpawnPoint: {fileID: 1852737879}
-  FartSpawnPoint: {fileID: 1852737879}
+  FartSpawnPoint: {fileID: 512867700}
   Fart: {fileID: 0}
   FartPrefab: {fileID: 9039464902215667803, guid: 40bc54d5f46bfd94e96050768b26120f, type: 3}
   spawnedKey: {fileID: 0}
@@ -665,6 +665,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502017912}
   m_CullTransparentMesh: 1
+--- !u!1 &512867699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 512867700}
+  m_Layer: 0
+  m_Name: FartSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &512867700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512867699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: -0.47, z: -1.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &599040280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +1974,7 @@ SceneRoots:
   - {fileID: 1529093125}
   - {fileID: 380929945}
   - {fileID: 1852737879}
+  - {fileID: 512867700}
   - {fileID: 1942849616}
   - {fileID: 400705192}
   - {fileID: 1622799413}

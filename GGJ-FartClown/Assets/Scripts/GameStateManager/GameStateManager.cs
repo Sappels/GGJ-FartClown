@@ -15,6 +15,8 @@ public class GameStateManager : MonoBehaviour
     public int score = 0;
     public float fartMeterValue = 0;
 
+    public GameObject missedPrefab;
+    public Transform missedKeySpawnPoint;
     public Slider fartMeterSlider;
 
     public static GameStateManager Instance { get; private set; }
@@ -74,8 +76,14 @@ public class GameStateManager : MonoBehaviour
 
     }
 
+    public void InstantiateAnnoyance()
+    {
+        Instantiate(missedPrefab, missedKeySpawnPoint);
+    }
     public void MissedKey()
     {
+        InstantiateAnnoyance();
+
         keysMissed++;
         if (keysMissed >= 3) GameOver();
         else

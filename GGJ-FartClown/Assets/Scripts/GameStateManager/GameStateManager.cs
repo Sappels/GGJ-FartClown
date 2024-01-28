@@ -100,7 +100,7 @@ public class GameStateManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("You lost!");
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         PlayerPrefs.SetInt("score", score);
         PlayerPrefs.SetInt("timesFarted", timesFarted);
         PlayerPrefs.SetInt("pizzasEaten", pizzasEaten);

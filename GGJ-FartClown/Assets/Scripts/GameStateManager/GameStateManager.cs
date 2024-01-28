@@ -2,6 +2,8 @@ using Palmmedia.ReportGenerator.Core.CodeAnalysis;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -10,13 +12,20 @@ public class GameStateManager : MonoBehaviour
     public int keysMissed = 0;
     public int timesFarted = 0;
     public int pizzasEaten = 0;
-    public float score;
+    public int score = 0;
+    public float fartMeterValue = 0;
+
+    public Slider fartMeterSlider;
 
     public static GameStateManager Instance { get; private set; }
 
     //public GameState currState = GameState.ENTRY;
     void Awake()
     {
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetInt("timesFarted", 0);
+        PlayerPrefs.SetInt("pizzasEaten", 0);
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -27,14 +36,31 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public void FillUpFarts()
+    {
+        float n = Random.Range(0.4f, 0.6f);
+        fartMeterValue += n;
+        fartMeterSlider.value = fartMeterValue;
+        if (fartMeterValue >= 1f)
+        {
+            FartManager.Instance.UrgeToFart(3);
+        }
+    }
+
+    public void ResetFarts()
+    {
+        fartMeterValue = 0;
+    }
+
     public void AddScore(float reactionTime, float fillSpeed)
     {
         float threshold = fillSpeed * 0.25f;
-
+        FillUpFarts();
         if (reactionTime <= threshold)
             score += 125;
         else
             score += 100;
+
     }
 
     public void MissedKey()
@@ -50,6 +76,14 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("You lost!");
+        Time.timeScale = 0;
+        PlayerPrefs.SetInt("score", score);
+        PlayerPrefs.SetInt("timesFarted", timesFarted);
+        PlayerPrefs.SetInt("pizzasEaten", pizzasEaten);
+
+        SceneManager.LoadScene("GameOver");
+
         //Call this method when a loss condition has been met
         //Shows a Game Over screen with pizzas eaten, times farted and score
     }

@@ -18,23 +18,23 @@ public class InputManager : MonoBehaviour
             // GetComponent<Animator>().SetTrigger("Fart");
             FartManager.Instance.ReleaseTheGasss();
         }
-        if (Input.GetKeyDown(KeyCode.Z))
 
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             ComboManager.Instance.VerifyKey(KeyCode.Z);
         }
-        if (Input.GetKeyDown(KeyCode.X))
 
+        if (Input.GetKeyDown(KeyCode.X))
         {
             ComboManager.Instance.VerifyKey(KeyCode.X);
         }
-        if (Input.GetKeyDown(KeyCode.C))
 
+        if (Input.GetKeyDown(KeyCode.C))
         {
             ComboManager.Instance.VerifyKey(KeyCode.C);
         }
-        if (Input.GetKeyDown(KeyCode.V))
 
+        if (Input.GetKeyDown(KeyCode.V))
         {
             ComboManager.Instance.VerifyKey(KeyCode.V);
         }

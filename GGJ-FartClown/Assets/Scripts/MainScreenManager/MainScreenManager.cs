@@ -7,6 +7,8 @@ public class MainScreenManager : MonoBehaviour
 {
     // public static MainScreenManager Instance { get; private set; }
 
+    public GameObject credits;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,11 @@ public class MainScreenManager : MonoBehaviour
     public void XPressed(string scene_Name)
     {
         SceneManager.LoadScene(scene_Name);
+    }
+
+    public void ActivateCredits()
+    {
+        credits.SetActive(!credits.activeSelf);
     }
 
     public void Quit()

@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> farts = new List<AudioClip>();
     public List<AudioClip> munching = new List<AudioClip>();
     public AudioClip inflate;
+    public AudioClip doh;
 
     public static AudioManager Instance { get; private set; }
     void Awake()
@@ -38,6 +39,11 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(inflate, 1f);
     }
+    public void PlayDohSound()
+    {
+        audioSource.PlayOneShot(doh, 1f);
+    }
+
 
     public void PlaySound(AudioClip clip)
     {

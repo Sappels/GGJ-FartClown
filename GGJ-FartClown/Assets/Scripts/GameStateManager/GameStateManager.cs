@@ -75,6 +75,7 @@ public class GameStateManager : MonoBehaviour
 
     public void InstantiateAnnoyance()
     {
+        AudioManager.Instance.PlayDohSound();
         Instantiate(missedPrefab, missedKeySpawnPoint);
     }
     public void MissedKey()

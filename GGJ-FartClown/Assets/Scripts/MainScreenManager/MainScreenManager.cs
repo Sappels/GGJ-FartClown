@@ -9,6 +9,9 @@ public class MainScreenManager : MonoBehaviour
 
     public GameObject credits;
 
+    public GameObject pop;
+    public GameObject choke;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,22 @@ public class MainScreenManager : MonoBehaviour
         // {
         //     Instance = this;
         // }
+
+        if (SceneManager.GetActiveScene().name == "Start") return;
+        switch (PlayerPrefs.GetString("howDidIDie"))
+        {
+            case "pop":
+                pop.SetActive(true);
+                choke.SetActive(false);
+                break;
+            case "choke":
+                pop.SetActive(false);
+                choke.SetActive(true);
+                break;
+            default:
+                break;
+        }
+
     }
 
     // Update is called once per frame

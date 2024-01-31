@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788375, g: 0.21073635, b: 0.28994125, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -414,6 +414,7 @@ MonoBehaviour:
   clownBlowUpPlaceholder: {fileID: 95585153}
   missedKeySpawnPoint: {fileID: 1679948032}
   fartMeterSlider: {fileID: 599040282}
+  animator: {fileID: 400705194}
   stomach: {fileID: 1836248219}
 --- !u!114 &380929943
 MonoBehaviour:
@@ -612,6 +613,11 @@ PrefabInstance:
 --- !u!1 &400705193 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a959d35098275aa4989f4c7258cf808f, type: 3}
+  m_PrefabInstance: {fileID: 400705192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &400705194 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a959d35098275aa4989f4c7258cf808f, type: 3}
   m_PrefabInstance: {fileID: 400705192}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &403178061 stripped
@@ -7841,9 +7847,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 216b5e0804454f948ba7bfe84eafc988, type: 3}
   - {fileID: 8300000, guid: 50e81c0b6289c154a983c2de76b3667b, type: 3}
   - {fileID: 8300000, guid: c46482cd5a8b6524abf19e1fdd3d0afc, type: 3}
+  successfullyEatenPizza:
+  - {fileID: 8300000, guid: a12c9ed6b221dc645a98f9afdaac416e, type: 3}
+  - {fileID: 8300000, guid: 0b38b2506aba09f439978a61b884453d, type: 3}
   inflate: {fileID: 8300000, guid: a4408043fa3b60946ab203317c94a0a7, type: 3}
   doh: {fileID: 8300000, guid: ea2a975949b432e41ae0ccb86f900fc6, type: 3}
   pop: {fileID: 8300000, guid: 31907b4dc6274fa419c92c92aec3dd52, type: 3}
+  areYouReady: {fileID: 8300000, guid: 4cbc81407fc5ac148bd49b535630ac54, type: 3}
+  cough: {fileID: 8300000, guid: 74bd87d60d4e7d045943e5a900b1e80e, type: 3}
 --- !u!4 &1900278799
 Transform:
   m_ObjectHideFlags: 0
@@ -8053,9 +8064,9 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5
-  m_Range: 50
+  m_Color: {r: 1, g: 0.9021697, b: 0.514151, a: 1}
+  m_Intensity: 2
+  m_Range: 40
   m_SpotAngle: 43.9
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -8113,7 +8124,7 @@ Transform:
   m_GameObject: {fileID: 2044351458}
   serializedVersion: 2
   m_LocalRotation: {x: 0.78878677, y: -0, z: -0, w: 0.614667}
-  m_LocalPosition: {x: 0, y: 13.57, z: 4.83}
+  m_LocalPosition: {x: 0, y: 14.473, z: 4.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

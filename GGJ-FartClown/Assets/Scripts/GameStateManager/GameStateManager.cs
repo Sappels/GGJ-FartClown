@@ -18,6 +18,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject clownBlowUpPlaceholder;
     public Transform missedKeySpawnPoint;
     public Slider fartMeterSlider;
+    public Animator animator;
 
     public static GameStateManager Instance { get; private set; }
 
@@ -29,6 +30,7 @@ public class GameStateManager : MonoBehaviour
         PlayerPrefs.SetInt("score", 0);
         PlayerPrefs.SetInt("timesFarted", 0);
         PlayerPrefs.SetInt("pizzasEaten", 0);
+        PlayerPrefs.SetString("howDidIDie", "");
 
         if (Instance != null && Instance != this)
         {
@@ -49,6 +51,7 @@ public class GameStateManager : MonoBehaviour
         if (fartMeterValue >= 0.95f) fartMeterValue = 1f;
         if (fartMeterValue >= 1f)
         {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.areYouReady);
             FartManager.Instance.UrgeToFart(3);
         }
     }
@@ -87,7 +90,12 @@ public class GameStateManager : MonoBehaviour
         InstantiateAnnoyance();
 
         keysMissed++;
-        if (keysMissed >= 3) GameOver();
+        if (keysMissed >= 3)
+        {
+            Choking();
+            Invoke("GameOver", 3f);
+
+        }
         else
         {
             ComboManager.Instance.GenerateCombo(ComboManager.Instance.FillSpeed);
@@ -106,10 +114,18 @@ public class GameStateManager : MonoBehaviour
         clownBlowUpPlaceholder.SetActive(true);
 
         Debug.Log("Blowing up:GameOver");
+        PlayerPrefs.SetString("howDidIDie", "pop");
         Invoke("GameOver", 1.5f);
         // GameOver();
 
     }
+    public void Choking()
+    {
+        AudioManager.Instance.PlaySound(AudioManager.Instance.cough);
+        PlayerPrefs.SetString("howDidIDie", "choke");
+        animator.Play("Choking");
+    }
+
     public void GameOver()
     {
         Debug.Log("You lost!");

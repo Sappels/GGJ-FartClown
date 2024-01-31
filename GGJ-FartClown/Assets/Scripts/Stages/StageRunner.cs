@@ -36,6 +36,7 @@ public class StageRunner : MonoBehaviour
         {
             Debug.Log("Pizza all slices eaten!");
             PlaceNewPizza();
+            AudioManager.Instance.PlayPizzaSound();
             GameStateManager.Instance.pizzasEaten++;
             GameStateManager.Instance.AddScore(reactionTime, fillSpeed);
             //GameStateManager.Instance.FillUpFarts();
